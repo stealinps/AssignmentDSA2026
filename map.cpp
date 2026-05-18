@@ -8,10 +8,11 @@ GameMap::GameMap() {
             grid[y][x] = 0;
         }
     }
+
     wallSprite = LoadTexture("src/sprite/wall.png"); 
-    
     portalSprite = LoadTexture("src/sprite/door.png");
-    // NEW: Initialize our manual counter to 0
+
+    //Initialize our manual counter to 0
     portalCount = 0; 
 }
 
@@ -28,8 +29,7 @@ bool GameMap::LoadMap(const std::string& filename) {
         return false;
     }
 
-    // REPLACED: portals.clear();
-    // Setting the counter to 0 makes the engine overwrite old portals automatically!
+    // Setting the counter to 0 makes the engine overwrite old portals automatically
     portalCount = 0; 
 
     for (int y = 0; y < MAP_ROWS; y++) {
@@ -63,8 +63,7 @@ bool GameMap::LoadMap(const std::string& filename) {
 }
 
 void GameMap::AddPortal(Rectangle bounds, std::string targetMap, float spawnX, float spawnY) {
-    // REPLACED: portals.push_back(...)
-    // Ensure we don't exceed our hardcoded array limit!
+    // Ensure we don't exceed hardcoded array limit
     if (portalCount < MAX_PORTALS) {
         Portal newPortal;
         newPortal.bounds = bounds;
@@ -92,7 +91,7 @@ bool GameMap::CheckPortals(Rectangle playerBounds, Portal& outPortal) {
 }
 
 void GameMap::Draw() {
-    // 1. Draw the walls
+    // Draw the walls
     for (int y = 0; y < MAP_ROWS; y++) {
         for (int x = 0; x < MAP_COLS; x++) {
             if (grid[y][x] == 1) {
@@ -101,9 +100,9 @@ void GameMap::Draw() {
         }
     }
 
-    // 2. Draw the portals
+    // Draw the portals
     for (int i = 0; i < portalCount; i++) {
-        // We cast the float coordinates back to integers (int) for pixel-perfect drawing
+        // Cast the float coordinates back to integers (int) for pixel-perfect drawing
         int drawX = (int)portals[i].bounds.x;
         int drawY = (int)portals[i].bounds.y;
         
@@ -118,7 +117,7 @@ bool GameMap::IsSolid(int targetX, int targetY) {
         return true; 
     }
 
-    // TILE CHECK: Is the destination a wall?
+    // TILE CHECK: Is the destination a wall
     if (grid[targetY][targetX] == 1) {
         return true;
     }

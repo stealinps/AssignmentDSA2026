@@ -24,8 +24,6 @@ private:
     Texture2D wallSprite; 
     Texture2D portalSprite;
     
-    // REMOVED: std::vector<Portal> portals;
-    // NEW: A raw array and a manual counter
     Portal portals[MAX_PORTALS]; 
     int portalCount;             
 

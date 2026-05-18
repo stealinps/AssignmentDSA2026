@@ -11,11 +11,7 @@ int main() {
     GameMap worldMap;        
     worldMap.LoadMap("src/levels/level1.txt"); 
     
-    // Add a portal to level.txt at pixel (400, 500) that leads to the house
-    // It will teleport the player to (400, 100) on the new map
-    //worldMap.AddPortal({400, 500, 32, 32}, "src/levels/level2.txt", 400, 100);
-    
-    Player myPlayer(400.0f, 300.0f); 
+    Player myPlayer(400.0f, 300.0f); // Starting Point
     GameState currentState = STATE_OVERWORLD;
 
     while (!WindowShouldClose()) {
@@ -23,14 +19,14 @@ int main() {
             case STATE_OVERWORLD: {
                 myPlayer.Update(worldMap); 
                 
-                // --- NEW: PORTAL CHECKING LOGIC ---
+                // PORTAL CHECKING LOGIC
                 Portal hitPortal;
                 if (worldMap.CheckPortals(myPlayer.GetBounds(), hitPortal)) {
                     
-                    // 1. Load the new map (The file itself will automatically spawn the new doors!)
+                    // Load the new map (The file itself will automatically spawn the new doors)
                     worldMap.LoadMap(hitPortal.targetMap);
                     
-                    // 2. Teleport the player
+                    // Teleport the player
                     myPlayer.Teleport(hitPortal.spawnX, hitPortal.spawnY);
                 }
                 
