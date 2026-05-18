@@ -11,6 +11,10 @@ Player::Player(float startX, float startY) {
     level = 1;
     maxHp = 25;
     hp = 25;
+    for (int i = 0; i < INVENTORY_SIZE; i++) {
+        inventory[i].id = 0;
+        inventory[i].name = "Empty";
+    }
 }
 
 Player::~Player() {
@@ -73,4 +77,21 @@ void Player::Draw() {
 void Player::Teleport(float newX, float newY) {
     position.x = newX;
     position.y = newY;
+}
+
+bool Player::AddItem(Item newItem) {
+    // Step 1: Loop through the array from slot 0 to 19
+    for (int i = 0; i < INVENTORY_SIZE; i++) {
+        
+        // Step 2: Is this slot completely empty?
+        if (inventory[i].id == 0) { 
+            
+            // Step 3: Put the item here!
+            inventory[i] = newItem; 
+            return true; // Success! We tell the engine the item was picked up.
+        }
+    }
+    
+    // If the loop finishes and we never returned true, the bag is totally full.
+    return false; 
 }

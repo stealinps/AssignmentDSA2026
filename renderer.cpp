@@ -16,13 +16,14 @@ Renderer::~Renderer() {
 }
 
 void Renderer::DrawFrame(GameState state, Player& player, GameMap& map) {
-    BeginDrawing();
-    
-    ClearBackground(BgColor);
 
     switch (state) {
         case STATE_OVERWORLD:
             DrawOverworld(player, map);
+            break;
+        case STATE_DIALOGUE: // <--- ADD THIS RIGHT BELOW OVERWORLD!
+            map.Draw();
+            player.Draw();
             break;
         case STATE_MENU:
             DrawOverworld(player, map);
@@ -32,8 +33,6 @@ void Renderer::DrawFrame(GameState state, Player& player, GameMap& map) {
             DrawBattle();
             break;
     }
-
-    EndDrawing();
 }
 
 void Renderer::DrawOverworld(Player& player, GameMap& map) {
@@ -90,6 +89,20 @@ void Renderer::DrawMenu(const Player& player) {
     DrawText(nameText.c_str(), panelX + 20, panelY + 30, 20, RAYWHITE);
     DrawText(levelText.c_str(), panelX + 20, panelY + 70, 20, RAYWHITE);
     DrawText(hpText.c_str(), panelX + 20, panelY + 110, 20, GREEN);
+
+    DrawText("INVENTORY:", panelX + 20, panelY + 160, 20, GOLD);
+
+    // Loop through the fixed array to display items
+    int drawY = panelY + 190;
+    for (int i = 0; i < INVENTORY_SIZE; i++) {
+        Item currentItem = player.GetInventoryItem(i);
+        
+        if (currentItem.id != 0) { // Only draw slots that are NOT empty
+            // .c_str() converts the string for Raylib
+            DrawText(currentItem.name.c_str(), panelX + 20, drawY, 15, RAYWHITE);
+            drawY += 25; // Move the text cursor down for the next item
+        }
+    }
     
     DrawText("Press 'M' to close", panelX + 20, panelY + 250, 15, LIGHTGRAY);
 }

@@ -21,3 +21,15 @@ PORTALS
 2
 0 8 src/levels/level2.txt 23 8
 24 8 src/levels/level3.txt 1 8
+
+CHESTS
+2
+5 5 101 1 Health_Potion
+8 10 102 2 Iron_Key
+
+SIGNPOSTS
+1
+12 5 3
+Hello there, traveler!
+Welcome to the custom C++ engine.
+This text was loaded from a file!d

@@ -4,6 +4,8 @@
 #include "map.h"
 #include <string>
 
+#define INVENTORY_SIZE 20
+
 class Player {
 private:
     Vector2 position;
@@ -16,6 +18,7 @@ private:
     int level;
     int hp;
     int maxHp;
+    Item inventory[INVENTORY_SIZE];
 
 public:
     Player(float startX, float startY);
@@ -32,6 +35,9 @@ public:
     int GetLevel() const { return level; }
     int GetHP() const { return hp; }
     int GetMaxHP() const { return maxHp; }
+
+    bool AddItem(Item newItem);
+    Item GetInventoryItem(int index) const { return inventory[index]; }
 };
 
 #endif
