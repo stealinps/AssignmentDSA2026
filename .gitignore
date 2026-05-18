@@ -1,1 +1,8 @@
+# Folders
+.vscode/
+build/
+
+
+# Executable
 *.exe
+
