@@ -3,7 +3,7 @@
 # Project Planned: ---
 
 > [!IMPORTANT]
-> **If you are on linux (no .exe extensions), make a ```/build``` folders and compile the code to that folder. ```.gitignore``` will ignore that folder**
+> **Use ```make windows```, ```make linux``` to compile the code**
 
 ### Rules
 
@@ -63,7 +63,7 @@ _please add more tasks_
 
 - raylib
 - C++
-- 
+
 <hr>
 
 ### Idea
@@ -72,4 +72,4 @@ _please add more tasks_
 - Similar battle structure as pokemon (linked-list)
 - Path finding (searching)
 - Pixel art graphics
-test
+- Worldbuilding
