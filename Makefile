@@ -10,13 +10,19 @@ LINUX_FLAGS = -lraylib
 WIN_OUT = game.exe
 WIN_FLAGS = -I/c/raylib/raylib/include -L/c/raylib/raylib/lib -lraylib -lopengl32 -lgdi32 -lwinmm -static-libgcc -static-libstdc++
 
-# Main Compiling
-all: linux windows
+# Auto-detect OS
+ifeq ($(OS), Windows_NT)
+    TARGET = windows
+else
+    TARGET = linux
+endif
 
-linux: 
+all: $(TARGET)
+
+linux:
 	$(CXX) $(SRCS) -o $(LINUX_OUT) $(LINUX_FLAGS)
 
-windows: 
+windows:
 	$(CXX) $(SRCS) -o $(WIN_OUT) $(WIN_FLAGS)
 
 clean:
