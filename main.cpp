@@ -5,6 +5,8 @@
 #include "renderer.h"
 #include "map.h"
 #include "dialogue.h"
+#include "Battle.h"
+#include "Items.h"
 #include <fstream>
 
 int main() {
@@ -18,6 +20,7 @@ int main() {
     GameState currentState = STATE_OVERWORLD;
 
     DialogueBox dialogueBox;
+    BattleSystem battle;
 	std::ifstream inputFile("usersfile.txt");
 	int fileScore;
 	inputFile>>fileScore;
@@ -82,10 +85,13 @@ int main() {
                     myPlayer.Teleport(hitPortal.spawnX, hitPortal.spawnY);
                 }
                 
-                if (IsKeyPressed(KEY_B)) currentState = STATE_BATTLE;
+                if (IsKeyPressed(KEY_B)) {
+                    battle.StartBattle();
+                    currentState = STATE_BATTLE;
+                }   
                 if (IsKeyPressed(KEY_M)) currentState = STATE_MENU; 
                 break;
-            }
+                }
             case STATE_DIALOGUE: {
                 
                 // NEW: Make sure the dialogue box ticks forward every frame
@@ -114,9 +120,29 @@ int main() {
                 if (IsKeyPressed(KEY_M) || IsKeyPressed(KEY_ESCAPE)) currentState = STATE_OVERWORLD;
                 break;
                 
-            case STATE_BATTLE:
-                if (IsKeyPressed(KEY_ESCAPE)) currentState = STATE_OVERWORLD;
-                break;
+            case STATE_BATTLE:{
+                if (!battle.IsBattleOver()) {
+                    battle.Update(myPlayer);
+                }
+
+                if (battle.IsBattleOver()) {
+
+                    if (IsKeyPressed(KEY_SPACE) || IsKeyPressed(KEY_ESCAPE)) {
+
+                     if (battle.GetState() == PLAYER_LOSE){
+
+                            worldMap.LoadMap("src/levels/level1.txt");
+                            myPlayer.Teleport(388.0f, 256.0f);
+                            battle.get_healing() = battle.max_HP();
+                }
+
+            currentState = STATE_OVERWORLD;
+            battle.StartBattle();
+        }
+    }
+
+    break;
+}
             
         }
 
@@ -124,12 +150,30 @@ int main() {
         //ClearBackground(BLACK);
         
         // 1. Let your custom Renderer draw the map, the player, the menu, or the battle!
-        gameRenderer.DrawFrame(currentState, myPlayer, worldMap);
-	for(int h=0;h<2;h++){
-		for(int w=0;w<2;w++){
-			DrawRectangle(50 + w*50, 50 + h*50, 50, 50, YELLOW);
-		}
-	}
+    if (currentState == STATE_BATTLE) {
+            battle.Draw(myPlayer);
+     }
+    else {
+         gameRenderer.DrawFrame(currentState, myPlayer, worldMap);
+     }
+
+	if (currentState != STATE_BATTLE){
+
+    DrawRectangle(50, 50, 50, 50, YELLOW);
+    DrawRectangle(100, 50, 50, 50, YELLOW);
+    DrawRectangle(50, 100, 50, 50, YELLOW);
+    DrawRectangle(100, 100, 50, 50, YELLOW);
+
+    DrawRectangleLines(50, 50, 100, 100, BLACK);
+
+    DrawText(
+        std::to_string(fileScore).c_str(),
+        55,
+        60,
+        50,
+        BLACK
+    );
+}
 
 	DrawRectangleLines(50, 50 , 100, 100, BLACK);
 	DrawText(std::to_string(fileScore).c_str(), 55, 60, 50, BLACK);
