@@ -8,11 +8,14 @@ Game::Game() : myPlayer(388.0f, 256.0f) {
 	std::ifstream inputFile("usersfile.txt");
 	inputFile>>fileScore;
 	inputFile.close();
-	std::ofstream outputFile("usersfile.txt", std::ios::out);
+	
 }
 
 // --- CLEANUP ---
 Game::~Game() {
+	std::ofstream outputFile("usersfile.txt", std::ios::out);
+	outputFile << fileScore ;
+	outputFile.close();
     // CloseWindow();
 }
 
@@ -37,6 +40,7 @@ void Game::ProcessInput() {
 
 // --- GAME LOGIC ---
 void Game::Update() {
+
     switch (currentState) {
         case STATE_OVERWORLD: {
             myPlayer.Update(worldMap, playerInput);
@@ -56,6 +60,7 @@ void Game::Update() {
                     if (myPlayer.AddItem(nearbyChest->content)) {
                         worldMap.MarkChestOpened(nearbyChest); 
                         nearbyChest->isOpen = true; 
+			fileScore=fileScore+10;
                     }
                 }
             }
@@ -130,6 +135,7 @@ case STATE_BATTLE: {
 }
 // --- RENDERING ---
 void Game::Draw() {
+
     BeginDrawing();
     
     if (currentState == STATE_BATTLE) {
