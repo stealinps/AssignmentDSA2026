@@ -20,3 +20,8 @@
 PORTALS
 1
 24 8 src/levels/level1.txt 1 8
+
+
+ENEMIES
+1
+12 8 303 150 200.0

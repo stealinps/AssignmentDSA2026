@@ -86,10 +86,11 @@ void Game::Update() {
             }
             
 		if (IsKeyPressed(KEY_B)) {
-                    currentEnemy = nullptr;
+			if(currentState==STATE_OVERWORLD){
                     battle.StartBattle();
                     currentState = STATE_BATTLE;
-                }  
+                }
+	}
             if (IsKeyPressed(KEY_M)) currentState = STATE_MENU; 
             break;
         }
