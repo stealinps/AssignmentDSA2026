@@ -19,8 +19,8 @@
 
 PORTALS
 2
-0 8 src/levels/level2.txt 23 8
-24 8 src/levels/level3.txt 1 8
+0 8 src/levels/level2.txt 23 8 0
+24 8 src/levels/level3.txt 1 8 1
 
 CHESTS
 2
