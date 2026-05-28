@@ -1,13 +1,13 @@
 #ifndef MAP_H
 #define MAP_H
- 
+
 #include "raylib.h"
 #include "config.h"
 #include <string> 
- 
+
 #define MAP_COLS (SCREEN_WIDTH / TILE_SIZE)
 #define MAP_ROWS (SCREEN_HEIGHT / TILE_SIZE)
- 
+
 #define MAX_CHESTS 10
 #define MAX_HISTORY 100
 struct Chest {
@@ -16,7 +16,7 @@ struct Chest {
     bool isOpen;
     int uniqueID;
 };
- 
+
 #define MAX_PORTALS 20 
 struct Portal {
     Rectangle  bounds;
@@ -25,7 +25,7 @@ struct Portal {
     float       spawnY;
     bool        requiresKey;   // If true, player must hold an Iron Key to enter
 };
- 
+
 #define MAX_SIGNPOSTS 10
 #define MAX_LINES_PER_SIGNPOST 5
 struct Signpost {
@@ -33,7 +33,7 @@ struct Signpost {
     std::string dialogue[MAX_LINES_PER_SIGNPOST];
     int lineCount;
 };
- 
+
 #define MAX_ENEMIES 10
 #define MAX_ENEMY_HISTORY 100
 struct Enemy {
@@ -47,12 +47,12 @@ struct Enemy {
     Item lootDrop;
     bool hasLoot;
 };
- 
+
 struct Point2D {
     int x;
     int y;
 };
- 
+
 class GameMap {
 private:
     int grid[MAP_ROWS][MAP_COLS];
@@ -65,21 +65,21 @@ private:
     
     Portal portals[MAX_PORTALS]; 
     int portalCount;      
- 
+
     Chest chests[MAX_CHESTS];
     int chestCount;
     int openedHistory[MAX_HISTORY]; 
     int historyCount;
- 
+
     Signpost signposts[MAX_SIGNPOSTS];
     int signpostCount;
- 
+
     Enemy enemies[MAX_ENEMIES];
     int enemyCount;
     int defeatedHistory[MAX_ENEMY_HISTORY];
     int defeatedCount;
     bool isAggro;
- 
+
 public:
     GameMap();
     ~GameMap(); 
@@ -88,25 +88,25 @@ public:
     bool IsSolid(int targetX, int targetY);
     bool CheckCollision(Rectangle rect);
     void Draw();
- 
+
     // requiresKey defaults to false for backward compatibility
     void AddPortal(Rectangle bounds, std::string targetMap,
                    float spawnX, float spawnY, bool requiresKey = false);
     bool CheckPortals(Rectangle playerBounds, Portal& outPortal);
- 
+
     void AddChest(Rectangle bounds, Item content);
     Chest*    CheckChestInteraction(Rectangle playerBounds);
     void      MarkChestOpened(Chest* chest);
- 
+
     Signpost* CheckSignpostInteraction(Rectangle playerBounds);
- 
+
     void    UpdateEnemies(Rectangle playerBounds);
     Enemy*  CheckEnemyCollision(Rectangle playerBounds);
     void    MarkEnemyDefeated(Enemy* enemy);
     Point2D GetNextPathStep(int startX, int startY, int targetX, int targetY);
     void    ResetDefeatedEnemies();
- 
+
     Item GetEnemyLoot(Enemy* enemy);
 };
- 
+
 #endif

@@ -25,7 +25,7 @@ PORTALS
 CHESTS
 2
 5 5 101 1 Health_Potion
-8 10 102 2 Iron_Key
+8 10 102 4 Iron_Key
 
 SIGNPOSTS
 1
