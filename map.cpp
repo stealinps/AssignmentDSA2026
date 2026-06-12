@@ -12,6 +12,7 @@ GameMap::GameMap() {
  
     wallSprite        = LoadTexture("src/sprite/wall.png");
     portalSprite      = LoadTexture("src/sprite/door.png");
+    portalLockedSprite= LoadTexture("src/sprite/door_locked.png");
     chestClosedSprite = LoadTexture("src/sprite/chest_closed.png");
     chestOpenSprite   = LoadTexture("src/sprite/chest_open.png");
     signSprite        = LoadTexture("src/sprite/sign.png");
@@ -294,12 +295,17 @@ void GameMap::Draw() {
             if (grid[y][x] == 1)
                 DrawTexture(wallSprite, x * TILE_SIZE, y * TILE_SIZE, WHITE);
  
-    // Portals — locked portals tinted red so the player can tell
+    // Portals
     for (int i = 0; i < portalCount; i++) {
         int drawX = (int)portals[i].bounds.x;
         int drawY = (int)portals[i].bounds.y;
-        Color tint = portals[i].requiresKey ? RED : WHITE;
-        DrawTexture(portalSprite, drawX, drawY, tint);
+        // Color tint = portals[i].requiresKey ? RED : WHITE;
+        // Change texture depending if the door is locked or not
+        if (portals[i].requiresKey) {
+            DrawTexture(portalSprite, drawX, drawY, WHITE);
+        } else {
+            DrawTexture(portalLockedSprite, drawX, drawY, WHITE);
+        }
     }
  
     // Chests

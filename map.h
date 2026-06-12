@@ -58,6 +58,7 @@ private:
     int grid[MAP_ROWS][MAP_COLS];
     Texture2D wallSprite; 
     Texture2D portalSprite;
+    Texture2D portalLockedSprite;
     Texture2D chestClosedSprite; 
     Texture2D chestOpenSprite;
     Texture2D signSprite;
