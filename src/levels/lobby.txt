@@ -20,7 +20,7 @@ GRID
 
 PORTAL 12 0 src/levels/spawn.txt 12 16 UNLOCKED
 PORTAL 12 17 src/levels/workstation.txt LOCKED
-24 9 src/levels/maze.txt
+PORTAL 24 9 src/levels/maze.txt 1 9 UNLOCKED
 
 CHESTS
 

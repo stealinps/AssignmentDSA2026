@@ -23,7 +23,7 @@ GameMap::GameMap() {
 
     NULLByteSprite = LoadTexture("src/sprite/nullbyte.png");
     LostArraySprite = LoadTexture("src/sprite/lostarray.png");
-    PointerGlitchSprite = LoadTexture("src/sprite/pointerglitch.png");
+    CompilerSprite = LoadTexture("src/sprite/compiler.png");
  
     portalCount   = 0;
     unlockedPortalCount = 0;   // FIX: was never initialized -> garbage value made
@@ -53,7 +53,7 @@ GameMap::~GameMap() {
     UnloadTexture(gateLockedSprite);
     UnloadTexture(NULLByteSprite);
     UnloadTexture(LostArraySprite);
-    UnloadTexture(PointerGlitchSprite);
+    UnloadTexture(CompilerSprite);
 }
  
 // Helper: fill in description and ensure quantity=1 for a given item ID.
@@ -99,7 +99,7 @@ static void FillEnemyData(Enemy& enemy) {
             break;
             
         case 2:
-            enemy.name = "Skeleton Guard";
+            enemy.name = "Lost Array";
             enemy.maxHp = 45;
             enemy.hp = 45;
             enemy.attack = 12;
@@ -110,7 +110,7 @@ static void FillEnemyData(Enemy& enemy) {
             break;
 
         case 999: // Final Boss
-            enemy.name = "Orc Warlord";
+            enemy.name = "Compiler";
             enemy.maxHp = 150;
             enemy.hp = 150;
             enemy.attack = 25;
@@ -397,7 +397,7 @@ void GameMap::Draw() {
         switch (enemies[i].typeID) {
             case 1:  currentSprite = NULLByteSprite; break;
             case 2:  currentSprite = LostArraySprite; break;
-            case 3:  currentSprite = PointerGlitchSprite; break;
+            case 999:  currentSprite = CompilerSprite; break;
             default: currentSprite = NULLByteSprite; break; // Fallback just in case
         }
 

@@ -85,7 +85,7 @@ private:
     
     Texture2D NULLByteSprite;
     Texture2D LostArraySprite;
-    Texture2D PointerGlitchSprite;
+    Texture2D CompilerSprite;
     
     Portal portals[MAX_PORTALS];
     std::string unlockedPortals[50];
