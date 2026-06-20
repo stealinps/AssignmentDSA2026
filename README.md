@@ -4,6 +4,8 @@
 
 <img width="1584" height="1232" alt="gamelogichirarchy" src="https://github.com/user-attachments/assets/b22ea5ec-6f50-4e51-bfca-323ed4ddc5c9" />
 
+# [Documentation (Google Docs)](https://docs.google.com/document/d/1PfxYm6z618VuIBea9-IZOxNvSm35JHu_nA49DuNBKIo/edit?usp=sharing)
+
 
 > [!IMPORTANT]
 > **Use ```make windows```, ```make linux``` to compile the code**
