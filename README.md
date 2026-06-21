@@ -45,7 +45,7 @@ Atleast 4 of these:
 - [x] Stack (Boss "rage charge" combo system in Boss.cpp)
 - [x] Linked-List (Inventory System)
 - [x] Tree (Boss decision tree / AI brain in Boss.cpp)
-- [ ] Sorting
+- [x] Sorting (Bubble sort for leaderboard)
 - [x] Searching (BFS for enemy detection)
 #### Post Implementation
 ##### Team Portfolio
