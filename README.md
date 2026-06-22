@@ -1,10 +1,10 @@
-## Data Structures And Algorithms Group Assignments 
 
-# Project Planned: RPG Game (SegFault)
+# Data Structures And Algorithms Group Assignments 
 
-<img width="1584" height="1232" alt="gamelogichirarchy" src="https://github.com/user-attachments/assets/b22ea5ec-6f50-4e51-bfca-323ed4ddc5c9" />
+## Project Planned: RPG Game (SegFault)
+<img width="1584" height="1232" alt="gamelogichirarchy" src="https://github.com/user-attachments/assets/7b678070-a3a7-42a2-b29c-56f533bee4f1" />
 
-# [Documentation (Google Docs)](https://docs.google.com/document/d/1PfxYm6z618VuIBea9-IZOxNvSm35JHu_nA49DuNBKIo/edit?usp=sharing)
+## [Documentation (Google Docs)](https://docs.google.com/document/d/1PfxYm6z618VuIBea9-IZOxNvSm35JHu_nA49DuNBKIo/edit?usp=sharing)
 
 
 > [!IMPORTANT]
