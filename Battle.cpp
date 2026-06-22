@@ -266,9 +266,6 @@ void BattleSystem::StartBattle(std::string name, int maxHp, int attack, int expR
     
     currentExpReward = expReward;
     currentScoreReward = scoreReward;
-
-    AudioManager::PauseOverworldMusic();
-    AudioManager::PlayBattleMusic();
     
     
     // Personalize the entry message
