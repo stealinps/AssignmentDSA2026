@@ -23,7 +23,7 @@ struct Portal {
     std::string targetMap;
     float       spawnX;
     float       spawnY;
-    bool        requiresKey;   // If true, player must hold an Iron Key to enter
+    bool        requiresKey;   // If true, player must hold a Key to enter
     int         requiredItemID;
 };
 

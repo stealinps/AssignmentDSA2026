@@ -335,9 +335,19 @@ void Game::Update() {
             // --------------------------------------------------------
             if (IsKeyPressed(KEY_B)) {
 
-                battle.StartBossBattle("THE COMPILER", 150, 25, 0, 0);
+                static Enemy debugBoss;
+                debugBoss.typeID = 999;
+                debugBoss.name = "THE COMPILER";
+                debugBoss.maxHp = 150;
+                debugBoss.attack = 25;
+                debugBoss.expReward = 0;
+                debugBoss.scoreReward = 0;
 
-                currentEnemy = nullptr;
+                // Point the game's tracking pointer to our fake boss
+                currentEnemy = &debugBoss;
+
+                // Start the battle using the dummy's stats
+                battle.StartBossBattle(debugBoss.name, debugBoss.maxHp, debugBoss.attack, debugBoss.expReward, debugBoss.scoreReward);
 
                 currentState = STATE_BATTLE;
             }
@@ -456,7 +466,7 @@ void Game::Update() {
 
                         if (currentEnemy != nullptr) {
                             // Check if this was the Final Boss
-                            if (currentEnemy->uniqueID == 999) {
+                            if (currentEnemy->typeID == 999) {
                                 fileScore += 1000; // Big bonus for winning
                                 SaveToLeaderboard();
                                 gameBeat = true;
@@ -560,7 +570,7 @@ void Game::Draw() {
 
 // LOADING LEADERBOARD
 void Game::LoadLeaderboard() {
-    std::ifstream file("src/leaderboard.txt");
+    std::ifstream file("leaderboard.txt");
     leaderboardCount = 0;
 
     if (file.is_open()) {

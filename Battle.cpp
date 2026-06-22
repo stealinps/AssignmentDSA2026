@@ -46,7 +46,7 @@ void BattleSystem::Player_Damage(Player& player) {
         currentState  = PLAYER_WIN;
         player.GainExperience(currentExpReward);
         player.AddScore(currentScoreReward);
-        battleMessage = "You defeated the enemy! Gained" + std::to_string(currentExpReward) + " EXP!";
+        battleMessage = "You defeated the enemy! Gained " + std::to_string(currentExpReward) + " EXP!";
         return;
     }
  
@@ -290,7 +290,7 @@ void BattleSystem::StartBossBattle(std::string name, int maxHp, int attack, int 
     
     currentExpReward = expReward;
     currentScoreReward = scoreReward;
-    battleMessage = enemyname + "awakens. It will attack with Stacks, Trees and Queues!";
+    battleMessage = enemyname + " awakens. It will attack with Stacks, Trees and Queues!";
 
     boss.Reset();                 // empty the attack queue + rage stack
 
